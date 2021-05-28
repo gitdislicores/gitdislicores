@@ -1,0 +1,20 @@
+
+SUB FuncionesBasicas.CrearQvds (vNombreTabla, vNombreQVD, vRutaQVDs)
+     
+     let vNoColumnas = NoOfFields('$(vNombreTabla)'); 
+     let vNoRegistros = NoOfRows('$(vNombreTabla)'); 
+
+
+     STORE $(vNombreTabla) into '$(vRutaQVDs)$(vNombreQVD)'.qvd;
+     drop table $(vNombreTabla);
+
+     //Variable para determinar tiempo la hora de inicio de la recarga
+     let vAhora = date(now(), 'hh:mm:ss');
+     
+     ResumenTabla:
+     LOAD * INLINE [
+     Tabla, HoraFin, Registros, Columnas
+     $(vNombreQVD), $(vAhora), $(vNoRegistros), $(vNoColumnas)
+     ];
+     Sleep(1000);
+ENDSUB

@@ -1,0 +1,6 @@
+#Archivos ignorados por defecto en las aplicaciones
+
+*.qvd
+*.xlsx
+*.xls
+*.qvf
